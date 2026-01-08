@@ -39,6 +39,7 @@ graph LR
     *   **Logs**: Go to **Explore** -> Select **Loki**. Query `{service_name="payment_service"}`.
         ![Grafana LogsDrilldown](images/grafana_logs.png)
     *   **Metrics**: Go to **Explore** -> Select **Prometheus**. Query `processed_transactions_total`.
+        ![Grafana Metrics](images/grafana_metrics.png)
     *   **Traces**: Go to **Explore** -> Select **Tempo**. Query by `TraceID` or use the visual search.
 
 ## 🛠 Troubleshooting & Implementation Journey
