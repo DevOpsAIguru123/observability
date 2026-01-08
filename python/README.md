@@ -42,6 +42,8 @@ graph LR
         ![Grafana Metrics](images/grafana_metrics.png)
     *   **Traces**: Go to **Explore** -> Select **Tempo**. Query by `TraceID` or use the visual search.
         ![Grafana Traces](images/grafana_traces.png)
+    *   **Data Sources**: Verify that Prometheus, Loki, and Tempo are correctly added as data sources.
+        ![Grafana Datasources](images/grafana_datasources.png)
 
 ## 🛠 Troubleshooting & Implementation Journey
 
@@ -73,7 +75,7 @@ resource_to_telemetry_conversion:
 ### 4. Missing Grafana Datasources
 **Issue**: Grafana required manual setup of Prometheus and Loki datasources every time the container restarted.
 **Solution**: Added a **provisioning** file (`datasources.yaml`) and mounted it into the Grafana container. This automatically configures Prometheus and Loki as available data sources on startup.
-![Grafana Datasources](images/grafana_datasources.png)
+
 
 ## 📂 Key Files
 
