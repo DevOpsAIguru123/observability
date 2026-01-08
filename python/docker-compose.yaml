@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # 1. OpenTelemetry Collector: Receives logs/metrics from App, processes them, sends to Prom/Loki
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP HTTP receiver
+      - "8889:8889" # Prometheus metrics exporter endpoint
+    depends_on:
+      - tempo
+
+  # 2. Prometheus: Stores Metrics (numbers)
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    ports:
+      - "9090:9090"
+
+  # 3. Loki: Stores Logs (text) - Needed because Prometheus CANNOT store text logs
+  loki:
+    image: grafana/loki:latest
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+
+  # 3.5 Tempo: Stores Traces
+  tempo:
+    image: grafana/tempo:latest
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - ./tempo.yaml:/etc/tempo.yaml
+    ports:
+      - "3200:3200" # Tempo HTTP API
+      - "14317:4317" # OTLP gRPC
+
+  # 4. Grafana: Visualization Dashboard
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+      - loki
+      - tempo
+
+  # 5. Our Python Application
+  app:
+    build: .
+    environment:
+      - OTEL_SERVICE_NAME=payment_service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+    ports:
+      - "8000:8000"
+    depends_on:
+      - otel-collector
+      - postgres
+
+  # 6. PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todo_db
+    ports:
+      - "5432:5432"

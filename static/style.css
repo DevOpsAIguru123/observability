@@ -1,0 +1,204 @@
+:root {
+    --bg-color: #0d0e12;
+    --card-bg: #161b22;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent-glow: rgba(88, 166, 255, 0.2);
+    --border: #30363d;
+    --success: #238636;
+    --danger: #da3633;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 5rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+}
+
+.accent {
+    color: var(--accent);
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+button#add-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+button#add-btn:active {
+    transform: scale(0.95);
+}
+
+.stats-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    flex: 1;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.todo-list {
+    list-style: none;
+}
+
+.todo-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    margin-bottom: 0.8rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    animation: slideIn 0.3s ease-out;
+}
+
+.todo-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--text-secondary);
+}
+
+.todo-item.done {
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.btn-done {
+    background: transparent;
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.btn-done:hover {
+    background: var(--success);
+    color: white;
+}
+
+.btn-delete {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete:hover {
+    background: var(--danger);
+    color: white;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

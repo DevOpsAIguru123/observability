@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O11y ToDo App</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Observability <span class="accent">ToDo</span></h1>
+            <p class="subtitle">Traced & Monitored in Real-time</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="todo-input" placeholder="What needs to be done?">
+                <button id="add-btn">Add Task</button>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-count">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="active-count">0</span>
+                    <span class="stat-label">Active</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="done-count">0</span>
+                    <span class="stat-label">Done</span>
+                </div>
+            </div>
+
+            <ul id="todo-list" class="todo-list">
+                <!-- Items injected here -->
+            </ul>
+        </main>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
