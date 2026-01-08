@@ -1,4 +1,4 @@
-# Python Observability Stack: Logs & Metrics with OpenTelemetry
+# Python open source Observability Stack: Logs & Metrics with OpenTelemetry
 
 This project demonstrates a complete observability pipeline using Python, OpenTelemetry, Prometheus, Loki, and Grafana. It simulates a payment service generating logs and metrics, which are collected, processed, and visualized.
 
