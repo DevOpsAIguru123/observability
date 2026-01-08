@@ -27,7 +27,6 @@ graph LR
 
 1.  **Start the Stack**:
     ```bash
-    cd monitoring
     docker compose up --build
     ```
 
