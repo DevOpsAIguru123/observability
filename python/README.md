@@ -41,6 +41,7 @@ graph LR
     *   **Metrics**: Go to **Explore** -> Select **Prometheus**. Query `processed_transactions_total`.
         ![Grafana Metrics](images/grafana_metrics.png)
     *   **Traces**: Go to **Explore** -> Select **Tempo**. Query by `TraceID` or use the visual search.
+        ![Grafana Traces](images/grafana_traces.png)
 
 ## 🛠 Troubleshooting & Implementation Journey
 
